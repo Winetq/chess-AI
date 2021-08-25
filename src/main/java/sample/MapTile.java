@@ -30,7 +30,7 @@ public class MapTile extends StackPane {
     public void addImage(int x, int y) throws FileNotFoundException {
         Counter counter = game.getCounter(x, y);
         if (counter != null) {
-            Image image = new Image(new FileInputStream("C:\\Users\\gabuc\\IdeaProjects\\chess\\src\\images\\" + counter.getPath()));
+            Image image = new Image(new FileInputStream("src/main/resources/images/" + counter.getPath()));
             ImageView imageView = new ImageView(image);
             imageView.setFitHeight(80);
             imageView.setFitWidth(80);

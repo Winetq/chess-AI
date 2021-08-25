@@ -1,9 +1,6 @@
 package sample;
 
-import abstraction.BlackCounter;
 import abstraction.Counter;
-
-import abstraction.MoveGenerator;
 import abstraction.WhiteCounter;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
