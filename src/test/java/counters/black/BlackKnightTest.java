@@ -10,36 +10,31 @@ import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.assertFalse;
 
 @Test
-public class BlackBishopTest {
+public class BlackKnightTest {
 
     @Test(dataProvider = "getCorrectMoves")
     public void isAllowedMove_choosingCorrectMoves_shouldBeTrue(int x, int y) {
-        Counter counter = new BlackBishop(new Point(4, 3));
+        Counter counter = new BlackKnight(new Point(4, 3));
         assertTrue(counter.isAllowedMove(new Point(x, y), null));
     }
 
     @DataProvider
     public static Object[][] getCorrectMoves() {
         return new Object[][]{
-                {3, 4},
-                {2, 5},
-                {1, 6},
-                {0, 7},
-                {5, 4},
-                {6, 5},
-                {7, 6},
-                {3, 2},
-                {2, 1},
-                {1, 0},
-                {5, 2},
-                {6, 1},
-                {7, 0}
+                {5, 1},
+                {3, 1},
+                {6, 2},
+                {2, 2},
+                {6, 4},
+                {2, 4},
+                {5, 5},
+                {3, 5}
         };
     }
 
     @Test(dataProvider = "getIncorrectMoves")
     public void isAllowedMove_choosingIncorrectMoves_shouldBeFalse(int x, int y) {
-        Counter counter = new BlackBishop(new Point(4, 3));
+        Counter counter = new BlackKnight(new Point(4, 3));
         assertFalse(counter.isAllowedMove(new Point(x, y), null));
     }
 
@@ -50,10 +45,10 @@ public class BlackBishopTest {
                 {5, 3},
                 {4, 4},
                 {3, 3},
-                {0, 0},
-                {7, 7},
-                {7, 1},
-                {1, 7}
+                {6, 1},
+                {6, 5},
+                {2, 5},
+                {2, 1}
         };
     }
 }
