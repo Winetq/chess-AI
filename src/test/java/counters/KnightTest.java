@@ -1,21 +1,25 @@
-package counters.black;
+package counters;
 
 import abstraction.Counter;
+import counters.black.BlackKnight;
+import counters.white.WhiteKnight;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
-import java.awt.Point;
-
-import static org.testng.Assert.assertTrue;
-import static org.testng.Assert.assertFalse;
+import java.awt.*;
 
 @Test
-public class BlackKnightTest {
+public class KnightTest {
 
     @Test(dataProvider = "getCorrectMoves")
     public void isAllowedMove_choosingCorrectMoves_shouldBeTrue(int x, int y) {
-        Counter counter = new BlackKnight(new Point(4, 3));
-        assertTrue(counter.isAllowedMove(new Point(x, y), null));
+        Counter blackKnight = new BlackKnight(new Point(4, 3));
+        Counter whiteKnight = new WhiteKnight(new Point(4, 3));
+        SoftAssert sa = new SoftAssert();
+        sa.assertTrue(blackKnight.isAllowedMove(new Point(x, y), null));
+        sa.assertTrue(whiteKnight.isAllowedMove(new Point(x, y), null));
+        sa.assertAll();
     }
 
     @DataProvider
@@ -34,8 +38,12 @@ public class BlackKnightTest {
 
     @Test(dataProvider = "getIncorrectMoves")
     public void isAllowedMove_choosingIncorrectMoves_shouldBeFalse(int x, int y) {
-        Counter counter = new BlackKnight(new Point(4, 3));
-        assertFalse(counter.isAllowedMove(new Point(x, y), null));
+        Counter blackKnight = new BlackKnight(new Point(4, 3));
+        Counter whiteKnight = new WhiteKnight(new Point(4, 3));
+        SoftAssert sa = new SoftAssert();
+        sa.assertFalse(blackKnight.isAllowedMove(new Point(x, y), null));
+        sa.assertFalse(whiteKnight.isAllowedMove(new Point(x, y), null));
+        sa.assertAll();
     }
 
     @DataProvider
