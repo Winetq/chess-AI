@@ -3,19 +3,17 @@ package sample;
 import abstraction.Counter;
 import abstraction.WhiteCounter;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
 
-import java.awt.Point;
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -63,11 +61,11 @@ public class Controller {
             if (selectedFile != null) {
                 game.clearTheBoard();
                 Scanner scanner = new Scanner(selectedFile);
-                while (scanner.hasNext()){
+                while (scanner.hasNext()) {
                     String row = scanner.nextLine();
                     char[] rowRepresentation = row.toCharArray();
                     int index;
-                    for (index = 0; index < row.length(); index++){
+                    for (index = 0; index < row.length(); index++) {
                         if (rowRepresentation[index] == '(')
                             break;
                     }
@@ -93,11 +91,11 @@ public class Controller {
 
             if (file != null) {
                 StringBuilder state = new StringBuilder();
-                for (int i = 0; i < 8; i++){
-                    for (int j = 0; j < 8; j++){
+                for (int i = 0; i < 8; i++) {
+                    for (int j = 0; j < 8; j++) {
                         Counter counter = game.getCounter(i, j);
                         if (counter != null){
-                            String row = counter.toString() + "\n";
+                            String row = counter + "\n";
                             state.append(row);
                         }
                     }
@@ -154,14 +152,11 @@ public class Controller {
                 mapTile = new MapTile(Color.WHITE, game, i, j);
         }
         mapTile.addImage(i, j);
-        mapTile.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                try {
-                    click(i, j, mapTile);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+        mapTile.setOnMouseClicked(mouseEvent -> {
+            try {
+                click(i, j, mapTile);
+            } catch (FileNotFoundException e) {
+                System.err.println(e.getMessage());
             }
         });
         gridMap.add(mapTile, i, j);

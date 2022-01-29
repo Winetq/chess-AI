@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class WhiteKing extends WhiteCounter {
 
     public WhiteKing(Point coordinates) {
-        super(coordinates, "white\\king.png");
+        super(coordinates, "white\\king.png", 900);
     }
 
     @Override

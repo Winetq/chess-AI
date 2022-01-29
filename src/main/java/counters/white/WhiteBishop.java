@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class WhiteBishop extends WhiteCounter {
 
     public WhiteBishop(Point coordinates) {
-        super(coordinates, "white\\bishop.png");
+        super(coordinates, "white\\bishop.png", 30);
     }
 
     @Override

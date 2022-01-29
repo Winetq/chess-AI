@@ -10,20 +10,21 @@ public abstract class Counter {
     protected Point coordinates;
     protected String path;
     protected boolean isAlive;
+    private int value;
 
-    public Counter(Point coordinates, String path) {
+    public Counter(Point coordinates, String path, int value) {
         this.coordinates = coordinates;
         this.path = path;
         this.isAlive = true;
+        this.value = value;
     }
 
-    public void move(Point newCoordinates){
+    public void move(Point newCoordinates) {
         this.coordinates = newCoordinates;
     }
 
-    public void battle(Counter attackedCounter){
-        if (attackedCounter != null)
-            attackedCounter.setAlive(false);
+    public void battle(Counter attackedCounter) {
+        if (attackedCounter != null) attackedCounter.setAlive(false);
     }
 
     public abstract boolean isAllowedMove(Point potentialCoordinates, Counter attackedCounter);
@@ -34,7 +35,7 @@ public abstract class Counter {
         return coordinates.x;
     }
 
-    public int getY(){
+    public int getY() {
         return coordinates.y;
     }
 
@@ -44,6 +45,10 @@ public abstract class Counter {
 
     public String getPath() {
         return path;
+    }
+
+    public int getValue() {
+        return value;
     }
 
     public boolean isAlive() {

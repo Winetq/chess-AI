@@ -18,7 +18,7 @@ public class MapTile extends StackPane {
     private Point coordinates;
     private Color baseColor;
 
-    public MapTile(Color color, Game game, int x, int y){
+    public MapTile(Color color, Game game, int x, int y) {
         rectangle = new Rectangle(80, 80);
         rectangle.setFill(color);
         this.getChildren().add(rectangle);
@@ -38,11 +38,11 @@ public class MapTile extends StackPane {
         }
     }
 
-    public void highlight(){
+    public void highlight() {
         rectangle.setFill(Color.YELLOW);
     }
 
-    public void restoreColor(){
+    public void restoreColor() {
         rectangle.setFill(baseColor);
     }
 }

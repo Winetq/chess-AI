@@ -1,11 +1,13 @@
 package evaluation;
 
+import abstraction.BlackCounter;
 import abstraction.Counter;
+import abstraction.WhiteCounter;
 import counters.black.*;
 import counters.white.*;
 
 public class Evaluations {
-    private int positionEvaluationForWhitePawn[][] = {
+    private final int[][] positionsEvaluationForWhitePawn = {
             { 0, 0, 0, 0, 0, 0, 0, 0},
             { 50, 50, 50, 50, 50, 50, 50, 50},
             { 10, 10, 20, 30, 30, 20, 10, 10},
@@ -16,7 +18,7 @@ public class Evaluations {
             { 0, 0, 0, 0, 0, 0, 0, 0}
     };
 
-    private int positionEvaluationForBlackPawn[][] = {
+    private final int[][] positionsEvaluationForBlackPawn = {
             { 0, 0, 0, 0, 0, 0, 0, 0},
             { 5, 10, 10,-20,-20, 10, 10, 5},
             { 5, -5,-10, 0, 0,-10, -5, 5},
@@ -27,7 +29,7 @@ public class Evaluations {
             { 0, 0, 0, 0, 0, 0, 0, 0}
     };
 
-    private int positionEvaluationForWhiteKnight[][] = {
+    private final int[][] positionsEvaluationForWhiteKnight = {
             { -50, -40, -30, -30, -30, -30, -40, -50},
             { -40, -20, 0, 0, 0, 0, -20, -40},
             { -30, 0, 10, 15, 15, 10, 0, -30},
@@ -38,7 +40,7 @@ public class Evaluations {
             { -50, -40, -30, -30, -30, -30, -40, -50}
     };
 
-    private int positionEvaluationForBlackKnight[][] = {
+    private final int[][] positionsEvaluationForBlackKnight = {
             { -50, -40, -30, -30, -30, -30, -40, -50},
             { -40, -20, 0, 5, 5, 0, -20, -40},
             { -30, 5, 10, 15, 15, 10, 5, -30},
@@ -49,7 +51,7 @@ public class Evaluations {
             { -50, -40, -30, -30, -30, -30, -40, -50}
     };
 
-    private int positionEvaluationForWhiteBishop[][] = {
+    private final int[][] positionsEvaluationForWhiteBishop = {
             { -20, -10, -10, -10, -10, -10, -10, -20},
             { -10, 0, 0, 0, 0, 0, 0, -10},
             { -10, 0, 5, 10, 10, 5, 0, -10},
@@ -60,7 +62,7 @@ public class Evaluations {
             { -20, -10, -10, -10, -10, -10, -10, -20}
     };
 
-    private int positionEvaluationForBlackBishop[][] = {
+    private final int[][] positionsEvaluationForBlackBishop = {
             { -20, -10, -10, -10, -10, -10, -10, -20},
             { -10, 5, 0, 0, 0, 0, 5, -10},
             { -10, 10, 10, 10, 10, 10, 10, -10},
@@ -71,7 +73,7 @@ public class Evaluations {
             { -20, -10, -10, -10, -10, -10, -10, -20}
     };
 
-    private int positionEvaluationForWhiteRook[][] = {
+    private final int[][] positionsEvaluationForWhiteRook = {
             { 0, 0, 0, 0, 0, 0, 0, 0},
             { 5, 10, 10, 10, 10, 10, 10, 5},
             { -5, 0, 0, 0, 0, 0, 0, -5},
@@ -82,7 +84,7 @@ public class Evaluations {
             { 0, 0, 0, 5, 5, 0, 0, 0}
     };
 
-    private int positionEvaluationForBlackRook[][] = {
+    private final int[][] positionsEvaluationForBlackRook = {
             { 0, 0, 0, 5, 5, 0, 0, 0},
             { -5, 0, 0, 0, 0, 0, 0, -5},
             { -5, 0, 0, 0, 0, 0, 0, -5},
@@ -93,7 +95,7 @@ public class Evaluations {
             { 0, 0, 0, 0, 0, 0, 0, 0}
     };
 
-    private int positionEvaluationForWhiteQueen[][] = {
+    private final int[][] positionsEvaluationForWhiteQueen = {
             { -20, -10, -10, -5, -5, -10, -10, -20},
             { -10, 0, 0, 0, 0, 0, 0, -10},
             { -10, 0, 5, 5, 5, 5, 0, -10},
@@ -104,7 +106,7 @@ public class Evaluations {
             { -20, -10, -10, -5, -5, -10, -10, -20}
     };
 
-    private int positionEvaluationForBlackQueen[][] = {
+    private final int[][] positionsEvaluationForBlackQueen = {
             { -20, -10, -10, -5, -5, -10, -10, -20},
             { -10, 0, 5, 0, 0, 0, 0, -10},
             { -10, 5, 5, 5, 5, 5, 0, -10},
@@ -115,7 +117,7 @@ public class Evaluations {
             { -20, -10, -10, -5, -5, -10, -10, -20}
     };
 
-    private int positionEvaluationForWhiteKing[][] = {
+    private final int[][] positionsEvaluationForWhiteKing = {
             { -30, -40, -40, -50, -50, -40, -40, -30},
             { -30, -40, -40, -50, -50, -40, -40, -30},
             { -30, -40, -40, -50, -50, -40, -40, -30},
@@ -126,7 +128,7 @@ public class Evaluations {
             { 20, 30, 10, 0, 0, 10, 30, 20}
     };
 
-    private int positionEvaluationForBlackKing[][] = {
+    private final int[][] positionsEvaluationForBlackKing = {
             { 20, 30, 10, 0, 0, 10, 30, 20},
             { 20, 20, 0, 0, 0, 0, 20, 20},
             { -10, -20, -20, -20, -20, -20, -20, -10},
@@ -137,135 +139,33 @@ public class Evaluations {
             { -30, -40, -40, -50, -50, -40, -40, -30}
     };
 
-    public Evaluations() {
-    }
-
-    public int getValueEvaluationOfWhiteCounters(Counter counter){ // captures by black counters
-        if (counter instanceof WhitePawn)
-            return 10;
-        if (counter instanceof WhiteKnight)
-            return 30;
-        if (counter instanceof WhiteBishop)
-            return 30;
-        if (counter instanceof WhiteRook)
-            return 50;
-        if (counter instanceof WhiteQueen)
-            return 90;
-        if (counter instanceof WhiteKing)
-            return 900;
-
+    public int getValueEvaluationOfWhiteCounters(Counter counter) { // captures by black counters
+        if (counter instanceof WhiteCounter) return counter.getValue();
         return 0;
     }
 
-    public int getValueEvaluationOfBlackCounters(Counter counter){ // captures by white counters
-        if (counter instanceof BlackPawn)
-            return -10;
-        if (counter instanceof BlackKnight)
-            return -30;
-        if (counter instanceof BlackBishop)
-            return -30;
-        if (counter instanceof BlackRook)
-            return -50;
-        if (counter instanceof BlackQueen)
-            return -90;
-        if (counter instanceof BlackKing)
-            return -900;
-
+    public int getValueEvaluationOfBlackCounters(Counter counter) { // captures by white counters
+        if (counter instanceof BlackCounter) return -counter.getValue();
         return 0;
     }
 
-    public int getValueOfTheCounters(Counter counter){
-        if (counter instanceof WhitePawn || counter instanceof BlackPawn)
-            return 10;
-        if (counter instanceof WhiteKnight || counter instanceof BlackKnight)
-            return 30;
-        if (counter instanceof WhiteBishop || counter instanceof BlackBishop)
-            return 30;
-        if (counter instanceof WhiteRook || counter instanceof BlackRook)
-            return 50;
-        if (counter instanceof WhiteQueen || counter instanceof BlackQueen)
-            return 90;
-        if (counter instanceof WhiteKing || counter instanceof BlackKing)
-            return 900;
+    public int getValueOfTheCounters(Counter counter) {
+        return counter.getValue();
+    }
 
+    public int getPositionEvaluation(Counter counter, int x, int y) {
+        if (counter instanceof BlackPawn) return positionsEvaluationForBlackPawn[y][x];
+        if (counter instanceof BlackKnight) return positionsEvaluationForBlackKnight[y][x];
+        if (counter instanceof BlackBishop) return positionsEvaluationForBlackBishop[y][x];
+        if (counter instanceof BlackRook) return positionsEvaluationForBlackRook[y][x];
+        if (counter instanceof BlackQueen) return positionsEvaluationForBlackQueen[y][x];
+        if (counter instanceof BlackKing) return positionsEvaluationForBlackKing[y][x];
+        if (counter instanceof WhitePawn) return positionsEvaluationForWhitePawn[y][x];
+        if (counter instanceof WhiteKnight) return positionsEvaluationForWhiteKnight[y][x];
+        if (counter instanceof WhiteBishop) return positionsEvaluationForWhiteBishop[y][x];
+        if (counter instanceof WhiteRook) return positionsEvaluationForWhiteRook[y][x];
+        if (counter instanceof WhiteQueen) return positionsEvaluationForWhiteQueen[y][x];
+        if (counter instanceof WhiteKing) return positionsEvaluationForWhiteKing[y][x];
         return 0;
-    }
-
-    public int getPositionEvaluation(Counter counter, int x, int y){
-        if (counter instanceof BlackPawn)
-            return getPositionEvaluationForBlackPawn(x, y);
-        if (counter instanceof BlackKnight)
-            return getPositionEvaluationForBlackKnight(x, y);
-        if (counter instanceof BlackBishop)
-            return getPositionEvaluationForBlackBishop(x, y);
-        if (counter instanceof BlackRook)
-            return getPositionEvaluationForBlackRook(x, y);
-        if (counter instanceof BlackQueen)
-            return getPositionEvaluationForBlackQueen(x, y);
-        if (counter instanceof BlackKing)
-            return getPositionEvaluationForBlackKing(x, y);
-
-        if (counter instanceof WhitePawn)
-            return getPositionEvaluationForWhitePawn(x, y);
-        if (counter instanceof WhiteKnight)
-            return getPositionEvaluationForWhiteKnight(x, y);
-        if (counter instanceof WhiteBishop)
-            return getPositionEvaluationForWhiteBishop(x, y);
-        if (counter instanceof WhiteRook)
-            return getPositionEvaluationForWhiteRook(x, y);
-        if (counter instanceof WhiteQueen)
-            return getPositionEvaluationForWhiteQueen(x, y);
-        if (counter instanceof WhiteKing)
-            return getPositionEvaluationForWhiteKing(x, y);
-
-        return 0;
-    }
-
-    private int getPositionEvaluationForWhitePawn(int x, int y) {
-        return positionEvaluationForWhitePawn[y][x];
-    }
-
-    private int getPositionEvaluationForBlackPawn(int x, int y) {
-        return positionEvaluationForBlackPawn[y][x];
-    }
-
-    private int getPositionEvaluationForWhiteKnight(int x, int y) {
-        return positionEvaluationForWhiteKnight[y][x];
-    }
-
-    private int getPositionEvaluationForBlackKnight(int x, int y) {
-        return positionEvaluationForBlackKnight[y][x];
-    }
-
-    private int getPositionEvaluationForWhiteBishop(int x, int y) {
-        return positionEvaluationForWhiteBishop[y][x];
-    }
-
-    private int getPositionEvaluationForBlackBishop(int x, int y) {
-        return positionEvaluationForBlackBishop[y][x];
-    }
-
-    private int getPositionEvaluationForWhiteRook(int x, int y) {
-        return positionEvaluationForWhiteRook[y][x];
-    }
-
-    private int getPositionEvaluationForBlackRook(int x, int y) {
-        return positionEvaluationForBlackRook[y][x];
-    }
-
-    private int getPositionEvaluationForWhiteQueen(int x, int y) {
-        return positionEvaluationForWhiteQueen[y][x];
-    }
-
-    private int getPositionEvaluationForBlackQueen(int x, int y) {
-        return positionEvaluationForBlackQueen[y][x];
-    }
-
-    private int getPositionEvaluationForWhiteKing(int x, int y) {
-        return positionEvaluationForWhiteKing[y][x];
-    }
-
-    private int getPositionEvaluationForBlackKing(int x, int y) {
-        return positionEvaluationForBlackKing[y][x];
     }
 }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class BlackKnight extends BlackCounter {
 
     public BlackKnight(Point coordinates) {
-        super(coordinates, "black\\knight.png");
+        super(coordinates, "black\\knight.png", 30);
     }
 
     @Override

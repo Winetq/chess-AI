@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class WhiteRook extends WhiteCounter {
 
     public WhiteRook(Point coordinates) {
-        super(coordinates, "white\\rook.png");
+        super(coordinates, "white\\rook.png", 50);
     }
 
     @Override

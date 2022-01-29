@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class BlackPawn extends BlackCounter {
 
     public BlackPawn(Point coordinates) {
-        super(coordinates, "black\\pawn.png");
+        super(coordinates, "black\\pawn.png", 10);
     }
 
     @Override

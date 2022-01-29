@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class WhitePawn extends WhiteCounter {
 
     public WhitePawn(Point coordinates) {
-        super(coordinates, "white\\pawn.png");
+        super(coordinates, "white\\pawn.png", 10);
     }
 
     @Override
