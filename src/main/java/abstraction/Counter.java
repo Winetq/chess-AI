@@ -1,6 +1,10 @@
 package abstraction;
 
-import java.awt.Point;
+import javafx.util.Pair;
+import sample.Game;
+
+import java.awt.*;
+import java.util.ArrayList;
 
 public abstract class Counter {
     protected Point coordinates;
@@ -23,6 +27,8 @@ public abstract class Counter {
     }
 
     public abstract boolean isAllowedMove(Point potentialCoordinates, Counter attackedCounter);
+
+    public abstract void generateAllPossibleMoves(Game game, ArrayList<Pair<Counter, Point>> allCurrentMoves);
 
     public int getX() {
         return coordinates.x;

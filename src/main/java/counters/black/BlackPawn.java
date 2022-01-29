@@ -2,8 +2,12 @@ package counters.black;
 
 import abstraction.BlackCounter;
 import abstraction.Counter;
+import abstraction.WhiteCounter;
+import javafx.util.Pair;
+import sample.Game;
 
-import java.awt.Point;
+import java.awt.*;
+import java.util.ArrayList;
 
 public class BlackPawn extends BlackCounter {
 
@@ -28,6 +32,30 @@ public class BlackPawn extends BlackCounter {
             return true;
 
         return false; // other cases
+    }
+    
+    @Override
+    public void generateAllPossibleMoves(Game game, ArrayList<Pair<Counter, Point>> allCurrentMoves) {
+        // move one square up
+        Counter attackedSquare = game.getCounter(coordinates.x, coordinates.y + 1);
+        if (attackedSquare == null)
+            allCurrentMoves.add(new Pair<>(this, new Point(coordinates.x, coordinates.y + 1)));
+
+        // move two squares up
+        attackedSquare = game.getCounter(coordinates.x, coordinates.y + 2);
+        if (isAllowedMove(new Point(coordinates.x, coordinates.y + 2), attackedSquare)
+                && !game.isLeapedOverOthers(this, new Point(coordinates.x, coordinates.y + 2)))
+            allCurrentMoves.add(new Pair<>(this, new Point(coordinates.x, coordinates.y + 2)));
+
+        // move one square left catty-corner
+        attackedSquare = game.getCounter(coordinates.x + 1, coordinates.y + 1);
+        if (attackedSquare instanceof WhiteCounter)
+            allCurrentMoves.add(new Pair<>(this, new Point(coordinates.x + 1, coordinates.y + 1)));
+
+        // move one square right catty-corner
+        attackedSquare = game.getCounter(coordinates.x - 1, coordinates.y + 1);
+        if (attackedSquare instanceof WhiteCounter)
+            allCurrentMoves.add(new Pair<>(this, new Point(coordinates.x - 1, coordinates.y + 1)));
     }
 
     @Override

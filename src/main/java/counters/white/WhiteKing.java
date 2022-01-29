@@ -1,9 +1,13 @@
 package counters.white;
 
+import abstraction.BlackCounter;
 import abstraction.Counter;
 import abstraction.WhiteCounter;
+import javafx.util.Pair;
+import sample.Game;
 
-import java.awt.Point;
+import java.awt.*;
+import java.util.ArrayList;
 
 public class WhiteKing extends WhiteCounter {
 
@@ -31,6 +35,65 @@ public class WhiteKing extends WhiteCounter {
             return true;
 
         return false; // other cases
+    }
+    
+    @Override
+    public void generateAllPossibleMoves(Game game, ArrayList<Pair<Counter, Point>> allCurrentMoves) {
+        // move one square up
+        if (coordinates.y - 1 >= 0) {
+            Counter attackedSquare = game.getCounter(coordinates.x, coordinates.y - 1);
+            if (attackedSquare == null || attackedSquare instanceof BlackCounter)
+                allCurrentMoves.add(new Pair<>(this, new Point(coordinates.x, coordinates.y - 1)));
+        }
+
+        // move one square right catty-corner up
+        if (coordinates.x + 1 <= 7 && coordinates.y - 1 >= 0) {
+            Counter attackedSquare = game.getCounter(coordinates.x + 1, coordinates.y - 1);
+            if (attackedSquare == null || attackedSquare instanceof BlackCounter)
+                allCurrentMoves.add(new Pair<>(this, new Point(coordinates.x + 1, coordinates.y - 1)));
+        }
+
+        // move one square right
+        if (coordinates.x + 1 <= 7) {
+            Counter attackedSquare = game.getCounter(coordinates.x + 1, coordinates.y);
+            if (attackedSquare == null || attackedSquare instanceof BlackCounter)
+                allCurrentMoves.add(new Pair<>(this, new Point(coordinates.x + 1, coordinates.y)));
+        }
+
+        // move one square right catty-corner down
+        if (coordinates.x + 1 <= 7 && coordinates.y + 1 <= 7) {
+            Counter attackedSquare = game.getCounter(coordinates.x + 1, coordinates.y + 1);
+            if (attackedSquare == null || attackedSquare instanceof BlackCounter)
+                allCurrentMoves.add(new Pair<>(this, new Point(coordinates.x + 1, coordinates.y + 1)));
+        }
+
+        // move one square down
+        if (coordinates.y + 1 <= 7) {
+            Counter attackedSquare = game.getCounter(coordinates.x, coordinates.y + 1);
+            if (attackedSquare == null || attackedSquare instanceof BlackCounter)
+                allCurrentMoves.add(new Pair<>(this, new Point(coordinates.x, coordinates.y + 1)));
+        }
+
+        // move one square left catty-corner down
+        if (coordinates.x - 1 >= 0 && coordinates.y + 1 <= 7) {
+            Counter attackedSquare = game.getCounter(coordinates.x - 1, coordinates.y + 1);
+            if (attackedSquare == null || attackedSquare instanceof BlackCounter)
+                allCurrentMoves.add(new Pair<>(this, new Point(coordinates.x - 1, coordinates.y + 1)));
+        }
+
+        // move one square left
+        if (coordinates.x - 1 >= 0) {
+            Counter attackedSquare = game.getCounter(coordinates.x - 1, coordinates.y);
+            if (attackedSquare == null || attackedSquare instanceof BlackCounter)
+                allCurrentMoves.add(new Pair<>(this, new Point(coordinates.x - 1, coordinates.y)));
+        }
+
+        // move one square left catty-corner up
+        if (coordinates.x - 1 >= 0 && coordinates.y - 1 >= 0) {
+            Counter attackedSquare = game.getCounter(coordinates.x - 1, coordinates.y - 1);
+            if (attackedSquare == null || attackedSquare instanceof BlackCounter)
+                allCurrentMoves.add(new Pair<>(this, new Point(coordinates.x - 1, coordinates.y - 1)));
+        }
     }
 
     @Override
